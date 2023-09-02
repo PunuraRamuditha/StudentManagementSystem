@@ -1,19 +1,45 @@
 import React, { useEffect, useState } from "react";
 import "./Register.css"
-
-
-
-import classes from "./Header.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import Login from "./Login";
 
 
 const Register = ({closeModal}) => {
+    const [fname, setFullName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [grade, setGrade] = useState(null);
+    const [username, setUsername] = useState(null);
+    const [password, setPassword] = useState(null);
+    const navigate = useNavigate();
 
-   
-
-   
-    
+    const handleInputChange = (e) => {
+        const {id , value} = e.target;
+        if(id === "fullname"){
+            setFullName(value);
+        }
+        if(id === "email"){
+            setEmail(value);
+        }
+        if(id === "grade"){
+            setGrade(value);
+        }
+        if(id === "username"){
+            setUsername(value);
+        }
+        if(id === "password"){
+            setPassword(value);
+        }
+      }
+      const handleSubmit  = () => {
+        console.log(fname,email,grade,username,password);
+        if (fname && email && grade && username && password){
+          fetch(' http://localhost:8000/Data' , {
+              method: "POST",
+              headers: {"Content-type" : "application/json"},
+              body: JSON.stringify({ fname, email, grade, username, password})
+          }).then(() => navigate("/Home"))
+     }
+    }
 
     const[modelOpen, setModelOpen] = useState(false)
 
@@ -29,30 +55,30 @@ const Register = ({closeModal}) => {
                 <h2>Register</h2>
             </div>
                 <div className='form-group'>
-                    <label htmlFor="fname">First Name</label>
-                    <input name="fname" />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor="lname">Last Name</label>
-                    <input name="lname" />
+                    <label htmlFor="fname">Full Name</label>
+                    <input type="text" value={fname} onChange = {(e) => handleInputChange(e)} id="fullname" placeholder="Enter your Full Name"/>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="email">Email</label>
-                    <input name="email" />
+                    <input type="text" value={email} onChange = {(e) => handleInputChange(e)} id="email" placeholder="Enter your Email"/>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="grade">Grade</label>
-                    <input name="grade" />
+                    <input type="text" value={grade} onChange = {(e) => handleInputChange(e)} id="grade" placeholder="Enter your Grade"/>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="username">Username</label>
-                    <input name="username" />
+                    <input type="text" value={username} onChange = {(e) => handleInputChange(e)} id="username" placeholder="Enter username"/>
                 </div>
                 <div className='form-group'>
                         <label htmlFor="password">Password</label>
-                        <input type="password" input name="password" />
+                        <input type="password" value={password} onChange = {(e) => handleInputChange(e)} id="password" placeholder="Enter Password"/>
                 </div>
-                <button type="submit" className='btnregister' >Register</button><br></br>
+                <div className='form-group'>
+                        <label htmlFor="password">Confirm Password</label>
+                        <input type="password" value={password} onChange = {(e) => handleInputChange(e)} id="password" placeholder="Confirm Password"/>
+                </div>
+                <button onClick={()=>handleSubmit()} type="submit" class="btnregister">Register</button>
                
                     
             </form>
