@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Register.css"
-import { BiMenuAltRight } from "react-icons/bi";
-import { AiOutlineClose } from "react-icons/ai";
+
 
 
 import classes from "./Header.module.scss";
@@ -11,28 +10,10 @@ import Login from "./Login";
 
 const Register = ({closeModal}) => {
 
-    const Navgate = useNavigate();
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [size, setSize] = useState({
-        width: undefined,
-        height: undefined,
-    });
+   
 
-    useEffect(() => {
-        const handleResize = () => {
-            setSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
-            });
-        };
-        window.addEventListener("resize", handleResize);
-
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    const menuToggleHandler = () => {
-        setMenuOpen((p) => !p);
-    };
+   
+    
 
     const[modelOpen, setModelOpen] = useState(false)
 
@@ -71,17 +52,12 @@ const Register = ({closeModal}) => {
                         <label htmlFor="password">Password</label>
                         <input type="password" input name="password" />
                 </div>
-                <button type="register" className='btnregister' >Register</button><br></br>
-                <button onClick={() => setModelOpen(true)} className="btnlogin">Login</button>    
-                    {modelOpen && < Login closeModal={() =>{setModelOpen(false)}}/>}
-                    <div className={classes.header__content__toggle}>
-                    {!menuOpen ? (
-                        <BiMenuAltRight onClick={menuToggleHandler} />
-                    ) : (
-                        <AiOutlineClose onClick={menuToggleHandler} />
-                    )}
-                </div>
+                <button type="submit" className='btnregister' >Register</button><br></br>
+               
+                    
             </form>
+            <button onClick={() => setModelOpen(true)} className="btnlogin">Login</button>    
+                    {modelOpen && < Login closeModal={() =>{setModelOpen(false)}}/>}
         </div>
       
     </div>

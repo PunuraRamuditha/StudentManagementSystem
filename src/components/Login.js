@@ -35,9 +35,7 @@ const Login = ( { closeModal }) => {
         }
     }, [size.width, menuOpen]);
 
-    const menuToggleHandler = () => {
-        setMenuOpen((p) => !p);
-    };
+    
 
     const[modalOpen, setModalOpen] = useState(false)
 
@@ -57,13 +55,15 @@ const Login = ( { closeModal }) => {
                     <div className='form-group'>
                         <label htmlFor="password">Password</label>
                         <input type="password" input name="password" />
-                    </div>
-                    <button type="submit" className='btnlogin' >Login</button><br></br>
-                    <button onClick={() => setModalOpen(true)} className="btnregister">Register</button>
-                    {modalOpen && < Register closeModal={() =>{setModalOpen(false)}}/>}
+                        </div>
+                    
                     
                 
             </form>
+            <button type="submit" className='btnlogin' >Login</button><br></br>
+                    <button onClick={() => setModalOpen(true)} className="btnregister">Register</button>
+                    {modalOpen && < Register closeModal={() =>{setModalOpen(false)}}/>}
+                    
         </div>
     </div>
   );

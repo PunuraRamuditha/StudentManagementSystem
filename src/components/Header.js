@@ -8,6 +8,7 @@ import classes from "./Header.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import Login from "./Login";
 import "./Login.css";
+import Register from "./Register";
 
 
 const Header = () => {
