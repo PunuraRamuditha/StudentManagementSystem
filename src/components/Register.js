@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Register.css"
-
+import { BiMenuAltRight } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
 
 
 import classes from "./Header.module.scss";
@@ -29,7 +30,9 @@ const Register = ({closeModal}) => {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    
+    const menuToggleHandler = () => {
+        setMenuOpen((p) => !p);
+    };
 
     const[modelOpen, setModelOpen] = useState(false)
 
@@ -71,9 +74,14 @@ const Register = ({closeModal}) => {
                 <button type="register" className='btnregister' >Register</button><br></br>
                 <button onClick={() => setModelOpen(true)} className="btnlogin">Login</button>    
                     {modelOpen && < Login closeModal={() =>{setModelOpen(false)}}/>}
-                    
-                
-                </form>
+                    <div className={classes.header__content__toggle}>
+                    {!menuOpen ? (
+                        <BiMenuAltRight onClick={menuToggleHandler} />
+                    ) : (
+                        <AiOutlineClose onClick={menuToggleHandler} />
+                    )}
+                </div>
+            </form>
         </div>
       
     </div>

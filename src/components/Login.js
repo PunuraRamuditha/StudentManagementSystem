@@ -58,9 +58,9 @@ const Login = ( { closeModal }) => {
                         <label htmlFor="password">Password</label>
                         <input type="password" input name="password" />
                     </div>
-                    <button type="login" className='btnlogin' >Login</button><br></br>
+                    <button type="submit" className='btnlogin' >Login</button><br></br>
                     <button onClick={() => setModalOpen(true)} className="btnregister">Register</button>
-                    {modalOpen && <Register/>}
+                    {modalOpen && < Register closeModal={() =>{setModalOpen(false)}}/>}
                     
                 
             </form>
